@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{f6bbaae4-9a06-4073-84a4-74bef90145ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{e2c036fb-5ff0-4dc8-b010-fa9802a08f53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils\sdl">
+      <UniqueIdentifier>{1bd809e5-6eff-4a7e-a1f4-38d8ef66bad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils\sdl">
+      <UniqueIdentifier>{98618f06-1ccf-406b-bbf6-3d1484e9dd2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ecs">
+      <UniqueIdentifier>{28d53021-d63a-47fc-910e-1337ede103a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\fsm">
+      <UniqueIdentifier>{f6ffd5b0-8d97-436b-8323-fe141b8bb6e9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\utils\Vector2D.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\sdl\SDLUtils.cpp">
+      <Filter>Source Files\utils\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\sdl\Texture.cpp">
+      <Filter>Source Files\utils\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\sdl\SoundEffect.cpp">
+      <Filter>Source Files\utils\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\GameStateMachine.cpp">
+      <Filter>Header Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\GameState.cpp">
+      <Filter>Header Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BaseLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\utils\Singleton.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Vector2D.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\SDLUtils.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\Shortcuts.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\SoundEffect.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\Texture.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\Font.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\InputHandler.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\Music.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\sdl\SDLNetUtils.h">
+      <Filter>Header Files\utils\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Entity.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Component.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\ecs_def.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\System.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Manager.h">
+      <Filter>Header Files\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\GameState.h">
+      <Filter>Header Files\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\GameStateMachine.h">
+      <Filter>Header Files\fsm</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BaseLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
