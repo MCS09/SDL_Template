@@ -1,8 +1,0 @@
-E:\SDL\SDL_Template\src\BaseLevel.cpp;E:\SDL\SDL_Template\x64\Debug\BaseLevel.obj
-E:\SDL\SDL_Template\src\fsm\GameState.cpp;E:\SDL\SDL_Template\x64\Debug\GameState.obj
-E:\SDL\SDL_Template\src\fsm\GameStateMachine.cpp;E:\SDL\SDL_Template\x64\Debug\GameStateMachine.obj
-E:\SDL\SDL_Template\src\main.cpp;E:\SDL\SDL_Template\x64\Debug\main.obj
-E:\SDL\SDL_Template\src\utils\sdl\SDLUtils.cpp;E:\SDL\SDL_Template\x64\Debug\SDLUtils.obj
-E:\SDL\SDL_Template\src\utils\sdl\SoundEffect.cpp;E:\SDL\SDL_Template\x64\Debug\SoundEffect.obj
-E:\SDL\SDL_Template\src\utils\sdl\Texture.cpp;E:\SDL\SDL_Template\x64\Debug\Texture.obj
-E:\SDL\SDL_Template\src\utils\Vector2D.cpp;E:\SDL\SDL_Template\x64\Debug\Vector2D.obj
