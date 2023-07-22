@@ -33,11 +33,11 @@ Texture::Texture(SDL_Renderer* renderer, const std::string& fileName) {
 		SDL_FreeSurface(surface);
 		throw "Couldn't convert surface to texture for " + fileName;
 	}
-
-	width_ = surface->w;
-	height_ = surface->h;
-	renderer_ = renderer;
-
+	else {
+		width_ = surface->w;
+		height_ = surface->h;
+		renderer_ = renderer;
+	}
 	SDL_FreeSurface(surface);
 }
 
@@ -65,10 +65,12 @@ void Texture::textureFromText(SDL_Renderer* renderer, const std::string& text, c
 		SDL_FreeSurface(surface);
 		throw "Couldn't create texture for text '" + text + "'";
 	}
-
-	width_ = surface->w;
-	height_ = surface->h;
-	renderer_ = renderer;
+	else {
+		width_ = surface->w;
+		height_ = surface->h;
+		renderer_ = renderer;
+	}
+	
 
 	SDL_FreeSurface(surface);
 }

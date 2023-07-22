@@ -31,6 +31,9 @@
     <Filter Include="Header Files\fsm">
       <UniqueIdentifier>{f6ffd5b0-8d97-436b-8323-fe141b8bb6e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\tmxlite">
+      <UniqueIdentifier>{a94061b7-071a-476d-804a-6948fef24463}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\Vector2D.cpp">
@@ -56,6 +59,42 @@
     </ClCompile>
     <ClCompile Include="src\BaseLevel.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\miniz.c">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\Object.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\ObjectGroup.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\ObjectTypes.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\Property.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\TileLayer.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\Tileset.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\detail\pugixml.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\FreeFuncs.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\ImageLayer.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\LayerGroup.cpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tmxlite\Map.cpp">
+      <Filter>Source Files\tmxlite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,5 +152,19 @@
     <ClInclude Include="src\BaseLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tmxlite\miniz.h">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tmxlite\detail\pugiconfig.hpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tmxlite\detail\pugixml.hpp">
+      <Filter>Source Files\tmxlite</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\tmxlite\meson.build">
+      <Filter>Source Files\tmxlite</Filter>
+    </None>
   </ItemGroup>
 </Project>

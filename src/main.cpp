@@ -16,11 +16,7 @@ int main(int argc, char* argv[]) {
 	SDLUtils* sdl = SDLUtils::init("Testing", 1280, 720);
 	InputHandler* ih = InputHandler::init();
 	
-	sdl->load(sdl->images(), "Hack", Texture(sdl->renderer(), "resources/hack1.gif"));
-	/*BaseLevel* level = new BaseLevel("Pallet", "resources/tiles/pallet.tmx");*/
-
-	tmx::Map map_;
-	map_.load("resources/tiles/pallet.tmx");
+	BaseLevel* level = new BaseLevel("Pallet", "resources/untitled.tmx");
 
 
 	bool running = true;
@@ -32,10 +28,10 @@ int main(int argc, char* argv[]) {
 		if (ih->isAnyKeyDown()) 
 			cout << ih->getKeyPressed() << " ";
 
-		
-		sdl->images().at("Hack").render(0,0);
+		level->render();
 		sdl->presentRenderer();
 	}
 
+	delete level;
 	return 0;
 }

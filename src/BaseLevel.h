@@ -14,6 +14,7 @@ struct tile {
 	int width;
 	int height;
 
+	tile() {};
 	tile(Texture* tset, int x = 0, int y = 0, int tsX = 0, int tsY = 0, int w = 0, int h = 0);
 	void draw();
 };
@@ -23,7 +24,7 @@ private:
 	SDLUtils* sdl;
 
     std::string name_;
-	tmx::Map* map_;
+	tmx::Map map_;
     int rows_, cols_, tileW_, tileH_;
     std::vector<tile> tiles;
     std::map<int, Texture*> tilesets_;
@@ -31,7 +32,7 @@ private:
 
 public:
     BaseLevel(const std::string& name, const std::string& path);
-	~BaseLevel();
+	~BaseLevel() { };
     void render();
 
 private:

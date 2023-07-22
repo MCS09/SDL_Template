@@ -34,20 +34,13 @@ BaseLevel::BaseLevel(const std::string& name, const std::string& path) :
     sdl(sdlutils().instance()), name_(name), rows_(0), cols_(0), tileW_(0), tileH_(0)
 { 
     // Load and parse the Tiled map with tmxlite
-    map_ = new Map();
-    if (map_->load(path)) {
+    if (map_.load(path)) {
         loadDims();
         loadTilesets();
         loadTiles();
     }
     
 }
-
-BaseLevel::~BaseLevel() {
-    //if (map_ != nullptr) delete map_;
-}
-
-
 
 void BaseLevel::render() {
     for (auto& t : tiles) t.draw();
@@ -57,25 +50,25 @@ void BaseLevel::render() {
 
 void BaseLevel::loadDims() {
     // To get the map dimensions in tiles
-    auto map_dimensions = map_->getTileCount();
+    auto map_dimensions = map_.getTileCount();
     rows_ = map_dimensions.y;
     cols_ = map_dimensions.x;
 
     // To get the tiles dimensions in pixels
-    auto tilesize = map_->getTileSize();
+    auto tilesize = map_.getTileSize();
     tileW_ = tilesize.x;
     tileH_ = tilesize.y;
 }
 
 void BaseLevel::loadTilesets() {
     // Load all of the tilesets and store them in a map
-    auto& map_tilesets = map_->getTilesets();
+    auto& map_tilesets = map_.getTilesets();
 
     for (auto& tileset : map_tilesets) {
         std::string tsName = tileset.getName();
 
         sdl->load(sdl->images(), tsName, Texture(sdl->renderer(), tileset.getImagePath()));
-        tilesets_.insert({ tileset.getFirstGID(), &(sdl->images().at(tileset.getImagePath())) });
+        tilesets_.insert({ tileset.getFirstGID(), &(sdl->images().at(tsName)) });
     }
 
 }
@@ -83,7 +76,7 @@ void BaseLevel::loadTilesets() {
 
 void BaseLevel::loadTiles() {
     // Iterates through all the tilemap's layers
-    auto& map_layers = map_->getLayers();
+    auto& map_layers = map_.getLayers();
     for (auto& layer : map_layers) {
         if (layer->getType() == Layer::Type::Tile) {
             // To get all they layer's tiles
@@ -110,9 +103,9 @@ void BaseLevel::loadTiles() {
                         int tilesetID = -1;
                         for (auto ts = tilesets_.begin(); ts != tilesets_.end() && !found; ++ts) {
                             if (ts->first <= tileID) {
-                                found = true;
                                 tilesetID = ts->first;
                             } 
+                            else found = true;
                         }
                         // If the tilesetID is -1, that means no valid tileset has been found
                         // Otherwise, the tile gets stored in the tiles vector
@@ -134,7 +127,14 @@ void BaseLevel::loadTiles() {
                             int tileX = cl * tileW_;
                             int tileY = rw * tileH_;
 
-                            tile t(tilesets_[tilesetID], tileX, tileY, tilesetRegionX, tilesetRegionY, tileW_, tileH_);
+                            tile t;
+                            t.tileset = tilesets_[tilesetID];
+                            t.posX = tileX;
+                            t.posY = tileY;
+                            t.tsX = tilesetRegionX;
+                            t.tsY = tilesetRegionY;
+                            t.width = tileW_;
+                            t.height = tileH_;
                             tiles.push_back(t);
                         }
 
