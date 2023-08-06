@@ -7,11 +7,12 @@ void GameState::run(float frameTime) {
 	sdl->clearRenderer();
 
 
+	manager->update(frameTime);
 	update(frameTime);
+
 	render();
 	handleEvents();
 
-	manager->update(frameTime);
 	manager->refresh();
 	manager->flushMessages();
 

@@ -19,6 +19,9 @@ Texture::Texture(Texture&& other) noexcept {
 	other.renderer_ = nullptr;
 	width_ = other.width_;
 	height_ = other.height_;
+	fw_ = other.fw_;
+	fh_ = other.fh_;
+	opacity_ = other.opacity_;
 }
 
 // From image
@@ -55,8 +58,9 @@ Texture::Texture(SDL_Renderer* renderer, const std::string& text, const Font& fo
 void Texture::textureFromText(SDL_Renderer* renderer, const std::string& text, const Font& font, const SDL_Color* fgColor, const SDL_Color* bgColor) {
 	assert(renderer != nullptr);
 
-	SDL_Surface* surface = bgColor == nullptr ?
-		font.renderText(text, *fgColor) : font.renderText(text, *fgColor, *bgColor);
+	SDL_Surface* surface = nullptr;
+	if (bgColor == nullptr) surface = font.renderText(text, *fgColor);
+	else surface = font.renderText(text, *fgColor, *bgColor);
 
 	if (surface == nullptr) throw "Couldn't create surface for text '" + text + "'";
 

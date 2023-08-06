@@ -5,33 +5,33 @@
 #include "../src/checkMemLeaks.h"
 using namespace std;
 
-#include "../src/BaseLevel.h"
-
-#include <tmxlite/Map.hpp>
-
+#include "fsm/GameStateMachine.h"
+#include "fsm/GameStates/TextInputTest.h"
 
 int main(int argc, char* argv[]) {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	SDLUtils* sdl = SDLUtils::init("Testing", 1280, 720);
+	bool openGL = false;
+	SDLUtils* sdl = SDLUtils::init("Testing", 1280, 720, openGL);
 	InputHandler* ih = InputHandler::init();
 	
-	BaseLevel* level = new BaseLevel("Pallet", "resources/untitled.tmx");
+
+	GameStateMachine* fsm = GameStateMachine::init();
+	fsm->pushState(new TextInputTest());
 
 
+	
 	bool running = true;
-	while (!ih->isWindowClosed() && !ih->isKeyDown(SDLK_ESCAPE)) {
-		sdl->clearRenderer();
-
-		ih->refresh();
-
-		if (ih->isAnyKeyDown()) 
-			cout << ih->getKeyPressed() << " ";
-
-		level->render();
-		sdl->presentRenderer();
+	while (running) {
+		if (ih->isWindowClosed() || ih->isKeyDown(SDLK_ESCAPE))
+			running = false;
+		else
+			fsm->run();
+		
 	}
 
-	delete level;
+
 	return 0;
 }
+
+

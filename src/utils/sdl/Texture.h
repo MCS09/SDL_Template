@@ -97,14 +97,14 @@ public:
 		return opacity_;
 	}
 
-	inline void renderFrame(const SDL_Rect& dest, int col, int row, float angle = 0) {
-		SDL_Rect src;
-		src.x = fw_ * col;
-		src.y = fh_ * row;
-		src.w = fw_;
-		src.h = fh_;
-		render(src, dest, angle);
-	}
+	//inline void renderFrame(const SDL_Rect& dest, int col, int row, float angle = 0) {
+	//	SDL_Rect src;
+	//	src.x = fw_ * col;
+	//	src.y = fh_ * row;
+	//	src.w = fw_;
+	//	src.h = fh_;
+	//	render(src, dest, angle);
+	//}
 
 	SDL_Texture* getTexture() const { return texture_; }
 };

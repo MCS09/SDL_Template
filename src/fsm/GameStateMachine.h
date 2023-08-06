@@ -12,19 +12,10 @@ private:
 	std::stack<GameState*> gameStates;
 	GameState* deleting = nullptr;
 
-	GameStateMachine() : gameStates() {};
+	GameStateMachine() : gameStates() { };
 
 public:
-	~GameStateMachine() {
-		while (!gameStates.empty()) {
-			popState();
-			if (deleting != nullptr) {
-				delete deleting;
-				deleting = nullptr;
-			}
-		}
-
-	};
+	~GameStateMachine();
 	
 	// To avoid the FGM from getting copied/moved
 	GameStateMachine(GameStateMachine&) = delete;
@@ -38,6 +29,6 @@ public:
 	void changeState(GameState* state);
 	void popState();
 
-	void run(float frameTime);
+	void run(float frameTime = 1);
 };
 

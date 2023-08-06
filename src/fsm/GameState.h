@@ -21,11 +21,17 @@ public:
 		manager(new Manager()), stateID(stateID), sdl(SDLUtils::instance()), ih(InputHandler::instance()) {};
 	virtual ~GameState() { delete manager; };
 
-	virtual bool onEnter() { return false; };
-	virtual bool onExit() { return false; };
+	virtual bool onEnter() {
+		std::cout << "Entering " + stateID << std::endl;
+		return true;
+	};
+	virtual bool onExit() { 
+		std::cout << "Exiting " + stateID << std::endl; 
+		return true;
+	};
 	virtual std::string getStateID() { return stateID; };
 
-	virtual void run(float frameTime);
+	void run(float frameTime);
 
 	virtual void update(float frameTime) {};
 	virtual void render() {};

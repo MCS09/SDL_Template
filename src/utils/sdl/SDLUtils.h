@@ -9,6 +9,7 @@
 #include "SoundEffect.h"
 #include "Music.h"
 
+#include <SDL_opengl.h>
 
 
 class SDLUtils : public Singleton<SDLUtils> {
@@ -43,8 +44,17 @@ public:
 
 private:
 	SDLUtils();
-	SDLUtils(std::string windowTitle, int w, int h, int audioChannels = 4);
+	SDLUtils(std::string windowTitle, int w, int h, bool openGL = false, int audioChannels = 4);
 	//SDLUtils(std::string windowTitle, int w, int h, std::string fileName, int audioChannels = 4);
+
+
+	// openGL
+	bool openGL;
+	SDL_GLContext glContext;
+	//GLuint gProgramID;
+	//GLint gVertexPos2DLocation;
+	//GLuint gVBO;
+	//GLuint gIBO;
 
 
 	// Window
@@ -54,7 +64,6 @@ private:
 	SDL_Window* window_;
 	SDL_Renderer* renderer_;
 	void initWindow();
-	void closeWindow();
 
 	// Resources
 	std::unordered_map<std::string, Texture> images_;
@@ -63,7 +72,6 @@ private:
 	std::unordered_map<std::string, SoundEffect> sounds_;
 	std::unordered_map<std::string, Music> musics_;
 	void initResources();
-	void closeResources();
 	//void loadResources(std::string fileName);
 
 	resource_map_wrapper<Texture> imagesWrapper_;
@@ -85,13 +93,28 @@ public:
 	inline SDL_Renderer* renderer() { return renderer_; }
 	// Clears the renderer with a given SDL_Color (default to black)
 	inline void clearRenderer(SDL_Color bg = sdlcolor(0x000000FF)) {
-		SDL_SetRenderDrawColor(renderer_, COLOREXP(bg));
-		SDL_RenderClear(renderer_);
+		if (!openGL) {
+			SDL_SetRenderDrawColor(renderer_, COLOREXP(bg));
+			SDL_RenderClear(renderer_);
+		}
+		else {
+			/*glViewport(0, 0, windW_, windH_);
+			glClearColor(1.f, 0.f, 1.f, 0.f);
+			glClear(GL_COLOR_BUFFER_BIT);*/
+
+			SDL_GL_SwapWindow(window_);
+		}
 	}
 	// Presents the renderer
-	inline void presentRenderer() { SDL_RenderPresent(renderer_); }
+	inline void presentRenderer() { 
+		if(!openGL) 
+			SDL_RenderPresent(renderer_); 
+		else {
 
-	//inline SDL_Window* window() { return window_; }
+		}
+	}
+
+	inline SDL_Window* window() { return window_; }
 	inline int width() { return windW_; }
 	inline int height() { return windH_; }
 	inline void toggleFullScreen() {

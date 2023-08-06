@@ -22,6 +22,7 @@
     <ClCompile Include="src\BaseLevel.cpp" />
     <ClCompile Include="src\fsm\GameState.cpp" />
     <ClCompile Include="src\fsm\GameStateMachine.cpp" />
+    <ClCompile Include="src\fsm\GameStates\TextInputTest.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\tmxlite\detail\pugixml.cpp" />
     <ClCompile Include="src\tmxlite\FreeFuncs.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="src\ecs\System.h" />
     <ClInclude Include="src\fsm\GameState.h" />
     <ClInclude Include="src\fsm\GameStateMachine.h" />
+    <ClInclude Include="src\fsm\GameStates\TextInputTest.h" />
     <ClInclude Include="src\tmxlite\detail\pugiconfig.hpp" />
     <ClInclude Include="src\tmxlite\detail\pugixml.hpp" />
     <ClInclude Include="src\tmxlite\miniz.h" />

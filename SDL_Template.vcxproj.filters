@@ -34,6 +34,15 @@
     <Filter Include="Source Files\tmxlite">
       <UniqueIdentifier>{a94061b7-071a-476d-804a-6948fef24463}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\fsm">
+      <UniqueIdentifier>{d6dbd64e-0c5f-4553-8447-fe8a313ecb84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\fsm\GameStates">
+      <UniqueIdentifier>{035b49e7-bd3b-45b8-b261-d923a3aaded2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fsm\GameStates">
+      <UniqueIdentifier>{6faf407b-0d59-4a45-9d46-c625317813d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\utils\Vector2D.cpp">
@@ -47,12 +56,6 @@
     </ClCompile>
     <ClCompile Include="src\utils\sdl\SoundEffect.cpp">
       <Filter>Source Files\utils\sdl</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fsm\GameStateMachine.cpp">
-      <Filter>Header Files\fsm</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fsm\GameState.cpp">
-      <Filter>Header Files\fsm</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
@@ -95,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="src\tmxlite\Map.cpp">
       <Filter>Source Files\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\GameState.cpp">
+      <Filter>Source Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\GameStateMachine.cpp">
+      <Filter>Source Files\fsm</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsm\GameStates\TextInputTest.cpp">
+      <Filter>Source Files\fsm\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="src\tmxlite\detail\pugixml.hpp">
       <Filter>Source Files\tmxlite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsm\GameStates\TextInputTest.h">
+      <Filter>Header Files\fsm\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

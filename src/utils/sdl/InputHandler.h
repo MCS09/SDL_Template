@@ -4,7 +4,6 @@
 #include <SDL.h>
 #include <array>
 
-
 // Missing Joystick support (Chapter 4 of 'SDL Game Development')
 
 class InputHandler : public Singleton<InputHandler> {
@@ -19,12 +18,19 @@ private:
 	std::pair<Sint32, Sint32> mousePos_;
 	std::array<bool, 3> mbState_;
 	const Uint8* kbState_;
-	Uint8 pressedKey_;
+
+	std::string text_;
+	const char* composition_;
+	Sint32 cursor_;
+	Sint32 selection_len_;
 
 	InputHandler() {
+		text_ = "";
+		resetText();
 		kbState_ = SDL_GetKeyboardState(0);
 		clear();
 	}
+
 
 	inline void clear() {
 		closeWindow_ = false;
@@ -35,10 +41,7 @@ private:
 		for (bool m : mbState_) m = false;
 	}
 
-	inline void onKeyDown(const SDL_Event& event) { 
-		isKeyDown_ = true; 
-		pressedKey_ = event.key.keysym.sym;
-	}
+	inline void onKeyDown(const SDL_Event& event) { isKeyDown_ = true; }
 
 	inline void onKeyUp(const SDL_Event& event) {  isKeyUp_ = true; }
 
@@ -103,14 +106,37 @@ public:
 		case SDL_WINDOWEVENT:
 			handleWindowEvent(event);
 			break;
+		case SDL_TEXTINPUT:
+			text_ += event.text.text;
+			break;
+		case SDL_TEXTEDITING:
+			composition_ = event.edit.text;
+			cursor_ = event.edit.start;
+			selection_len_ = event.edit.length;
+			break;
 		default:
 			break;
+		}
+
+		if (SDL_IsTextInputActive()) {
+			if(isKeyDown(SDLK_BACKSPACE))
+				removeLastChar();
+
+			else if (isKeyDown(SDLK_RETURN)) {
+				SDL_StopTextInput();
+				resetText();
+				refresh();
+				std::cout << "Ended text input" << std::endl;
+			}
+
+
 		}
 	}
 	inline void refresh() {
 		SDL_Event event;
 		clear();
-		while (SDL_PollEvent(&event)) update(event);
+		while (SDL_PollEvent(&event)) 
+			update(event);
 	}
 
 
@@ -118,24 +144,26 @@ public:
 	inline bool isWindowClosed() { return closeWindow_; }
 
 
-	inline bool isAnyKeyDown() { return isKeyDown_; }
-	inline bool isKeyDown(SDL_Scancode key) { return isAnyKeyDown() && kbState_[key] == 1; }
+	inline bool keyDownEvent() { return isKeyDown_; }
+	inline bool isKeyDown(SDL_Scancode key) { return keyDownEvent() && kbState_[key] == 1; }
 	inline bool isKeyDown(SDL_Keycode key) { return isKeyDown(SDL_GetScancodeFromKey(key)); }
 
-	inline bool isAnyKeyUp() { return isKeyUp_; }
-	inline bool isKeyUp(SDL_Scancode key) { return isAnyKeyUp() && kbState_[key] == 0; }
+	inline bool keyUpEvent() { return isKeyUp_; }
+	inline bool isKeyUp(SDL_Scancode key) { return keyUpEvent() && kbState_[key] == 0; }
 	inline bool isKeyUp(SDL_Keycode key) { return isKeyUp(SDL_GetScancodeFromKey(key)); }
 	
-
-	inline Uint8 getKeyPressed() { return pressedKey_; }
-
 
 	inline bool isMouseMoving() { return isMouseMoving_; }
 	inline bool isMouseButtonDown() { return isMouseButtonDown_; }
 	inline const std::pair<Sint32, Sint32>& getMousePos() { return mousePos_; }
 	inline int getMouseState(MOUSEBUTTON b) { return mbState_[b]; }
 
-
+	inline std::string getInputText() { return text_; }
+	inline void resetText() { text_.clear(); }
+	inline void removeLastChar() { 
+		if(!text_.empty()) 
+			text_.pop_back(); 
+	}
 };
 
 

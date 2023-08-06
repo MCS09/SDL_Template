@@ -4,9 +4,21 @@
 #include "../checkMemLeaks.h"
 
 
+GameStateMachine::~GameStateMachine() {
+	while (!gameStates.empty()) {
+		popState();
+		if (deleting != nullptr) {
+			delete deleting;
+			deleting = nullptr;
+		}
+	}
+
+}
+
 // Adds a new state on top of the stack
 void GameStateMachine::pushState(GameState* state) {
-	gameStates.push(state);
+	if(state->onEnter()) 
+		gameStates.push(state);
 }
 
 // Changes the state on top of the stack and adds the new one on top
@@ -37,7 +49,8 @@ void GameStateMachine::popState() {
 
 // Runs the current state's loop
 void GameStateMachine::run(float frameTime) {
-	if (!gameStates.empty()) gameStates.top()->run(frameTime);
+	if (!gameStates.empty()) 
+		gameStates.top()->run(frameTime);
 
 	// Deletes the previously exited state
 	if(deleting != nullptr) {
