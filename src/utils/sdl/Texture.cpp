@@ -26,10 +26,10 @@ Texture::Texture(Texture&& other) noexcept {
 
 // From image
 Texture::Texture(SDL_Renderer* renderer, const std::string& fileName) {
-	assert(renderer != nullptr);
+	assert(renderer != nullptr, "Renderer wasn't created");
 
 	SDL_Surface* surface = IMG_Load(fileName.c_str());
-	if (surface == nullptr) throw "Couldn't load " + fileName;
+	if (surface == nullptr) throw "Couldn't load texture: " + fileName;
 
 	texture_ = SDL_CreateTextureFromSurface(renderer, surface);
 	if (texture_ == nullptr) {
@@ -56,7 +56,7 @@ Texture::Texture(SDL_Renderer* renderer, const std::string& text, const Font& fo
 
 // Aux method to create the texture from text
 void Texture::textureFromText(SDL_Renderer* renderer, const std::string& text, const Font& font, const SDL_Color* fgColor, const SDL_Color* bgColor) {
-	assert(renderer != nullptr);
+	assert(renderer != nullptr, "Renderer wasn't created");
 
 	SDL_Surface* surface = nullptr;
 	if (bgColor == nullptr) surface = font.renderText(text, *fgColor);

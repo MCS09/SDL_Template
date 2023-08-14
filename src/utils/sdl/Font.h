@@ -40,12 +40,12 @@ public:
 
 	// Render text with fgColor
 	inline SDL_Surface* renderText(const std::string& text, SDL_Color fgColor) const {
-		assert(font_ != nullptr);
+		assert(font_ != nullptr, "Font wasn't loaded");
 		return TTF_RenderUTF8_Solid(font_, text.c_str(), fgColor);
 	}
 	// Render text with fgColor and bgColor background
 	inline SDL_Surface* renderText(const std::string& text, SDL_Color fgColor, SDL_Color bgColor) const {
-		assert(font_ != nullptr);
+		assert(font_ != nullptr, "Font wasn't loaded");
 		return TTF_RenderUTF8_Shaded(font_, text.c_str(), fgColor, bgColor);
 	}
 

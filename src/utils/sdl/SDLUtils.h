@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL.h>
 #include <unordered_map>
+#include "../Timer.h"
 #include "Texture.h"
 #include "Font.h"
 #include "SoundEffect.h"
@@ -14,7 +15,7 @@
 
 class SDLUtils : public Singleton<SDLUtils> {
 	friend Singleton<SDLUtils>;
-
+	
 public:
 	template<typename T>
 	using resource_map = std::unordered_map<std::string, T>;
@@ -43,10 +44,16 @@ public:
 
 
 private:
+	static const int DEFAUDIOCH_ = 4;
 	SDLUtils();
-	SDLUtils(std::string windowTitle, int w, int h, bool openGL = false, int audioChannels = 4);
+	SDLUtils(std::string windowTitle, int w, int h);
+	SDLUtils(std::string windowTitle, int w, int h, bool opengGL);
+	SDLUtils(std::string windowTitle, int w, int h, int audioChannels);
+	SDLUtils(std::string windowTitle, int w, int h, bool openGL, int audioChannels);
 	//SDLUtils(std::string windowTitle, int w, int h, std::string fileName, int audioChannels = 4);
 
+	std::string error_;
+	Timer timer_;
 
 	// openGL
 	bool openGL;
@@ -88,6 +95,9 @@ public:
 	SDLUtils& operator=(SDLUtils&) = delete;
 	SDLUtils& operator=(SDLUtils&&) = delete;
 	~SDLUtils();
+
+
+	inline Timer& getTimer() { return timer_; }
 
 
 	inline SDL_Renderer* renderer() { return renderer_; }

@@ -11,7 +11,9 @@ public:
 	// Constructor
 	Music(const std::string& fileName) {
 		music_ = Mix_LoadMUS(fileName.c_str());
-		assert(music_ != nullptr);
+		if (music_ == nullptr) {
+			throw "Couldn't load music: " + fileName;
+		}
 	}
 
 	// To avoid copies 
@@ -39,13 +41,13 @@ public:
 
 	// To play the song an amount of times (defaults to infinite times)
 	inline void play(int loops = -1) const {
-		assert(loops >= -1 && music_ != nullptr);
+		assert(loops >= -1 && music_ != nullptr, "Music wasn't loaded or set to loop for invalid amount of times");
 		Mix_PlayMusic(music_, loops);
 	}
 
 	// To change the volume (ranges from 0 to 128 both included)
 	inline static int setMusicVolume(int volume) {
-		assert(volume >= 0 && volume <= 128);
+		assert(volume >= 0 && volume <= 128, "Invalid volume value");
 		return Mix_VolumeMusic(volume);
 	}
 

@@ -22,10 +22,10 @@ public:
 	virtual ~Singleton() {};
 
 
-	// Initializes the instance with extra parameters
+	// Initializes the instance with the desired parameters (.. args)
 	template<typename ...T_args>
 	inline static T* init(T_args &&...args) {
-		assert(instance_.get() == nullptr);
+		assert(instance_.get() == nullptr, "Instance already exists");
 		instance_.reset(new T(std::forward<T_args>(args)...));
 		
 		return instance_.get();

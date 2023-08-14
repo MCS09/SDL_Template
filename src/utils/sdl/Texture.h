@@ -54,13 +54,13 @@ public:
 	// with a rotation (angle) around the point p (of dest), and flips according
 	// to the value of flip. If 'p'is nullptr, it rotates around the center
 	inline void render(const SDL_Rect& src, const SDL_Rect& dest, double angle, const SDL_Point* p = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE) {
-		assert(texture_ != nullptr);
+		assert(texture_ != nullptr, "Texture wasn't loaded");
 		SDL_RenderCopyEx(renderer_, texture_, &src, &dest, angle, p, flip);
 	}
 
 	// Renders part of the texture (src) to a destination rectangle (dest)
 	inline void render(const SDL_Rect& src, const SDL_Rect& dest) {
-		assert(texture_ != nullptr);
+		assert(texture_ != nullptr, "Texture wasn't loaded");
 		SDL_RenderCopy(renderer_, texture_, &src, &dest);
 	}
 
@@ -87,13 +87,13 @@ public:
 	}
 
 	inline void setOpacity(float perc) {
-		assert(texture_ != nullptr);
+		assert(texture_ != nullptr, "Texture wasn't loaded");
 		SDL_SetTextureAlphaMod(texture_, (int)((255 * perc) / 100));
 		opacity_ = perc;
 	}
 
 	inline float getOpacity() {
-		assert(texture_ != nullptr);
+		assert(texture_ != nullptr, "Texture wasn't loaded");
 		return opacity_;
 	}
 
